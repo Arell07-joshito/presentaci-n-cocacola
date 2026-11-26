@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coca-Cola: Icono Global (1886–2026) | Presentación Interactiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coke-red: #E30613;
+      --coke-red-dark: #B5040E;
+      --coke-red-soft: #FDECEE;
+      --ink: #141416;
+      --ink-muted: #52525B;
+      --surface: #FFFFFF;
+      --bg-canvas: #F5F4F2;
+      --border: #E4E4E7;
+      --amber: #B45309;
+      --amber-soft: #FEF3C7;
+      --blue: #0284C7;
+      --blue-soft: #E0F2FE;
+      --shadow-card: 0 20px 50px rgba(20, 20, 22, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-canvas);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Bar */
+    .topbar {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .brand-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--coke-red);
+      box-shadow: 0 0 0 4px var(--coke-red-soft);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      border-color: #D4D4D8;
+      background: #FAFAFA;
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--coke-red);
+      border-color: var(--coke-red);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--coke-red-dark);
+      border-color: var(--coke-red-dark);
+    }
+
+    /* Progress Bar */
+    .progress-track {
+      width: 100%;
+      height: 3px;
+      background: #E4E4E7;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--coke-red);
+      width: 16.66%;
+      transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Main Stage */
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .slide-card {
+      width: 100%;
+      max-width: 1160px;
+      min-height: 640px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-card);
+      padding: 2.25rem 2.75rem;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      animation: fadeSlide 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-card.active {
+      display: flex;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border-bottom: 1px solid #F1F1F4;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .slide-num {
+      color: var(--coke-red);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coke-red);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+      line-height: 1.08;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.65rem, 3vw, 2.35rem);
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .lead {
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: var(--ink-muted);
+      max-width: 56ch;
+    }
+
+    /* Slide 1 Layout */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.25rem;
+      align-items: center;
+      flex: 1;
+    }
+
+    .index-pills {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+    }
+
+    .index-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #FAFAFA;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+
+    .index-pill:hover {
+      border-color: var(--coke-red);
+      background: var(--coke-red-soft);
+      transform: translateY(-2px);
+    }
+
+    .pill-num {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: var(--coke-red);
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .pill-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .hero-img-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.16);
+      aspect-ratio: 16 / 10;
+      background: #141416;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Slide 2 Layout */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 2rem;
+      align-items: stretch;
+      flex: 1;
+    }
+
+    .origin-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .origin-photo {
+      border-radius: 14px;
+      overflow: hidden;
+      flex: 1;
+      min-height: 220px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .origin-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nickel-card {
+      background: var(--coke-red);
+      color: #FFFFFF;
+      border-radius: 14px;
+      padding: 1.15rem 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+    }
+
+    .nickel-badge {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      background: rgba(255, 255, 255, 0.16);
+      padding: 0.65rem 0.9rem;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .nickel-card h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .nickel-card p {
+      font-size: 0.82rem;
+      line-height: 1.45;
+      opacity: 0.92;
+    }
+
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      justify-content: center;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--coke-red);
+      border-radius: 12px;
+      padding: 0.95rem 1.15rem;
+      background: #FCFCFD;
+    }
+
+    .timeline-item h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-item p {
+      font-size: 0.84rem;
+      line-height: 1.48;
+      color: var(--ink-muted);
+    }
+
+    /* Slide 3 Layout */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .kpi-card {
+      background: #FAFAFA;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .kpi-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--coke-red);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .kpi-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 0.3rem;
+    }
+
+    .kpi-sub {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin-top: 0.15rem;
+    }
+
+    .finance-bottom {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .chain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .chain-step {
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      background: #F9F9FB;
+      border: 1px solid var(--border);
+    }
+
+    .chain-step strong {
+      display: block;
+      font-size: 0.86rem;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+    }
+
+    .chain-step span {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+
+    .portfolio-box {
+      margin-top: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+    }
+
+    .portfolio-box img {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .portfolio-box p {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .chart-panel {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      background: #FFFFFF;
+    }
+
+    .chart-panel h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 1.1rem;
+      color: var(--ink);
+    }
+
+    .bar-group {
+      margin-bottom: 1rem;
+    }
+
+    .bar-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.83rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .bar-track {
+      height: 16px;
+      background: #ECECEE;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      width: 0;
+      transition: width 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .slide-card.active .bar-fill[data-width="61.6"] { width: 61.6%; background: var(--coke-red); }
+    .slide-card.active .bar-fill[data-width="28.7"] { width: 28.7%; background: var(--ink); }
+    .slide-card.active .bar-fill[data-width="27.4"] { width: 27.4%; background: var(--amber); }
+
+    /* Slide 4 Layout */
+    .culture-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .culture-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.15rem;
+      background: #FAFAFA;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .culture-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--coke-red-soft);
+      color: var(--coke-red);
+      font-weight: 800;
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .culture-card h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      color: var(--ink);
+    }
+
+    .culture-card p {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--ink-muted);
+    }
+
+    .wide-banner {
+      border-radius: 14px;
+      overflow: hidden;
+      height: 175px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .wide-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Slide 5 Layout */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.15rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .pillar-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      background: #FFFFFF;
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.85rem;
+    }
+
+    .pillar-card h4 {
+      font-size: 0.96rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      color: var(--ink);
+    }
+
+    .pillar-card p {
+      font-size: 0.83rem;
+      line-height: 1.52;
+      color: var(--ink-muted);
+    }
+
+    /* Slide 6 Layout */
+    .closing-banner {
+      border-radius: 16px;
+      overflow: hidden;
+      height: 195px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .closing-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .closing-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .closing-header .lead {
+      margin: 0 auto;
+    }
+
+    .legacy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .legacy-card {
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--coke-red);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      background: #FAFAFA;
+    }
+
+    .legacy-card h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: var(--ink);
+    }
+
+    .legacy-card p {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--ink-muted);
+    }
+
+    /* Footer Controls */
+    .bottombar {
+      padding: 0.85rem 1.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+
+    .dots {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: none;
+      background: #D4D4D8;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 28px;
+      background: var(--coke-red);
+    }
+
+    /* Overview Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 20, 22, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--surface);
+      border-radius: 18px;
+      max-width: 780px;
+      width: 100%;
+      padding: 1.75rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+    }
+
+    .overview-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: left;
+      background: #FAFAFA;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .overview-item:hover, .overview-item.current {
+      border-color: var(--coke-red);
+      background: var(--coke-red-soft);
+    }
+
+    .overview-item small {
+      display: block;
+      font-weight: 800;
+      color: var(--coke-red);
+      margin-bottom: 0.25rem;
+    }
+
+    .overview-item strong {
+      font-size: 0.88rem;
+      color: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .split-grid, .finance-bottom {
+        grid-template-columns: 1fr;
+      }
+      .culture-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .kpi-row, .pillars-grid, .legacy-grid, .overview-grid {
+        grid-template-columns: 1fr;
+      }
+      .slide-card {
+        padding: 1.5rem;
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>The Coca-Cola Company · 1886–2026</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn" id="btnOverview" title="Vista general (G)">Diapositivas</button>
+      <button class="btn" id="btnFullscreen" title="Pantalla completa (F)">Pantalla completa</button>
+      <a class="btn btn-primary" href="./CocaCola.pptx" download>Descargar PPTX</a>
+    </div>
+  </header>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <main class="stage" id="stage">
+    <!-- SLIDE 1 -->
+    <section class="slide-card active" data-title="Coca-Cola: Icono Global">
+      <div class="slide-meta">
+        <span>THE COCA-COLA COMPANY · 1886–2026</span>
+        <span class="slide-num">01 / 06</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">HISTORIA, NEGOCIO Y CULTURA GLOBAL</div>
+          <h1>Coca-Cola:<br>Icono Global</h1>
+          <p class="lead">De una farmacia en Atlanta en 1886 a la marca de bebidas más reconocida del planeta: finanzas, cultura pop y sostenibilidad.</p>
+          <div class="index-pills">
+            <button class="index-pill" onclick="goToSlide(1)">
+              <span class="pill-num">01</span>
+              <span class="pill-label">Orígenes 1886</span>
+            </button>
+            <button class="index-pill" onclick="goToSlide(2)">
+              <span class="pill-num">02</span>
+              <span class="pill-label">Finanzas $47.9B</span>
+            </button>
+            <button class="index-pill" onclick="goToSlide(3)">
+              <span class="pill-num">03</span>
+              <span class="pill-label">Cultura Pop</span>
+            </button>
+            <button class="index-pill" onclick="goToSlide(4)">
+              <span class="pill-num">04</span>
+              <span class="pill-label">Sostenibilidad</span>
+            </button>
+          </div>
+        </div>
+        <div class="hero-img-wrap">
+          <img src="./assets/hero-bottle.png" alt="Botella clásica de Coca-Cola al atardecer" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide-card" data-title="01 · El Origen en Atlanta">
+      <div class="slide-meta">
+        <span>THE COCA-COLA COMPANY · 1886–2026</span>
+        <span class="slide-num">02 / 06</span>
+      </div>
+      <div>
+        <div class="eyebrow">01 · SUS INICIOS</div>
+        <h2>El Origen en Atlanta: De Farmacia a Imperio</h2>
+      </div>
+      <div class="split-grid">
+        <div class="origin-left">
+          <div class="origin-photo">
+            <img src="./assets/origin-bottle.png" alt="Botella histórica de Coca-Cola" />
+          </div>
+          <div class="nickel-card">
+            <div class="nickel-badge">5¢</div>
+            <div>
+              <h3>Precio Fijo por 70 Años (1886–1959)</h3>
+              <p>Estrategia histórica de volumen masivo y accesibilidad universal que convirtió la bebida en hábito cotidiano.</p>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-list">
+          <div class="timeline-item">
+            <h4>1886 · Fórmula Original</h4>
+            <p>Dr. John S. Pemberton crea el jarabe en Jacobs' Pharmacy (Atlanta); se vendían 9 vasos diarios.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>1887 · Identidad Spencerian</h4>
+            <p>Frank M. Robinson bautiza la bebida y diseña la caligrafía fluida que perdura hasta hoy.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>1892 · Fundación Corporativa</h4>
+            <p>Asa Griggs Candler adquiere los derechos, funda The Coca-Cola Company e impulsa cupones gratis.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>1899 · Sistema de Franquicias</h4>
+            <p>Nace la red global de embotelladores independientes que permitió escalar a +200 países.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide-card" data-title="02 · Modelo de Negocio y Finanzas">
+      <div class="slide-meta">
+        <span>THE COCA-COLA COMPANY · 1886–2026</span>
+        <span class="slide-num">03 / 06</span>
+      </div>
+      <div>
+        <div class="eyebrow">02 · MODELO DE NEGOCIO Y FINANZAS</div>
+        <h2>Concentrado de Alto Margen y Escala Global</h2>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-value">$47.9B</div>
+          <div class="kpi-title">Ingresos netos anuales</div>
+          <div class="kpi-sub">Crecimiento orgánico sostenido</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value">61.6%</div>
+          <div class="kpi-title">Margen bruto concentrado</div>
+          <div class="kpi-sub">Modelo ligero en activos fijos</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value">2.200 M</div>
+          <div class="kpi-title">Raciones diarias globales</div>
+          <div class="kpi-sub">Consumo en +200 países y territorios</div>
+        </div>
+      </div>
+      <div class="finance-bottom">
+        <div>
+          <div class="chain-list">
+            <div class="chain-step">
+              <strong>1. The Coca-Cola Company</strong>
+              <span>Produce jarabes/concentrados y lidera marketing global.</span>
+            </div>
+            <div class="chain-step">
+              <strong>2. +200 Socios Embotelladores</strong>
+              <span>Embotellan, almacenan y distribuyen localmente.</span>
+            </div>
+            <div class="chain-step">
+              <strong>3. +30M Puntos de Venta</strong>
+              <span>Llegan al consumidor final en tiendas, restaurantes y retail.</span>
+            </div>
+          </div>
+          <div class="portfolio-box">
+            <img src="./assets/portfolio-bottles.png" alt="Evolución de envases Coca-Cola" />
+            <p>Evolución del portafolio: +200 marcas activas en bebidas.</p>
+          </div>
+        </div>
+        <div class="chart-panel">
+          <h3>Estructura de Rentabilidad Financiera (%)</h3>
+          <div class="bar-group">
+            <div class="bar-header">
+              <span>Margen Bruto (Concentrado)</span>
+              <strong style="color: var(--coke-red);">61.6%</strong>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="61.6"></div>
+            </div>
+          </div>
+          <div class="bar-group">
+            <div class="bar-header">
+              <span>Margen Operativo Consolidado</span>
+              <strong>28.7%</strong>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="28.7"></div>
+            </div>
+          </div>
+          <div class="bar-group">
+            <div class="bar-header">
+              <span>Margen Neto Anual</span>
+              <strong style="color: var(--amber);">27.4%</strong>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="27.4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide-card" data-title="03 · Marketing, Historia y Cultura">
+      <div class="slide-meta">
+        <span>THE COCA-COLA COMPANY · 1886–2026</span>
+        <span class="slide-num">04 / 06</span>
+      </div>
+      <div>
+        <div class="eyebrow">03 · MARKETING, HISTORIA Y CULTURA</div>
+        <h2>Hitos que Definieron Épocas y Cultura Pop</h2>
+      </div>
+      <div class="culture-grid">
+        <div class="culture-card">
+          <div>
+            <span class="culture-badge">01</span>
+            <h4>1915 · Botella Contour</h4>
+            <p>Silueta patentada reconocible al tacto incluso en la oscuridad.</p>
+          </div>
+        </div>
+        <div class="culture-card">
+          <div>
+            <span class="culture-badge">02</span>
+            <h4>1931 · Cultura Navideña</h4>
+            <p>Ilustraciones de Haddon Sundblom fijan la imagen moderna de Santa Claus.</p>
+          </div>
+        </div>
+        <div class="culture-card">
+          <div>
+            <span class="culture-badge">03</span>
+            <h4>1971 · Campaña 'Hilltop'</h4>
+            <p>Himno multicultural ('I'd Like to Buy the World a Coke') que marcó una generación.</p>
+          </div>
+        </div>
+        <div class="culture-card">
+          <div>
+            <span class="culture-badge">04</span>
+            <h4>2011 · Marketing Viral</h4>
+            <p>'Comparte una Coca-Cola' sustituyó el logo por nombres propios en 80+ países.</p>
+          </div>
+        </div>
+      </div>
+      <div class="wide-banner">
+        <img src="./assets/neon-sign.png" alt="Letrero luminoso clásico de Coca-Cola" />
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide-card" data-title="04 · Sostenibilidad, Salud y Controversias">
+      <div class="slide-meta">
+        <span>THE COCA-COLA COMPANY · 1886–2026</span>
+        <span class="slide-num">05 / 06</span>
+      </div>
+      <div>
+        <div class="eyebrow">04 · SOSTENIBILIDAD, SALUD Y CONTROVERSIAS</div>
+        <h2>Impacto Ambiental, Salud y Desafíos Globales</h2>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon" style="background: var(--coke-red-soft); color: var(--coke-red);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <h4>Salud y Reformulación</h4>
+          <p>68% del portafolio global ofrece opciones bajas o sin calorías (Coca-Cola Zero Azúcar), respondiendo a impuestos saludables y etiquetado frontal.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon" style="background: var(--blue-soft); color: var(--blue);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          </div>
+          <h4>Agua y Economía Circular</h4>
+          <p>+100% de reposición hídrica mediante conservación de cuencas y expansión de botellas fabricadas con resina 100% reciclada (rPET) y retornables.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon" style="background: var(--amber-soft); color: var(--amber);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          </div>
+          <h4>Controversias y Escrutinio</h4>
+          <p>Debate continuo por huella de plásticos de un solo uso, gestión hídrica en zonas vulnerables y asociación con consumo excesivo de azúcar.</p>
+        </div>
+      </div>
+      <div class="wide-banner">
+        <img src="./assets/glass-lemon.png" alt="Vaso de Coca-Cola con hielo y rodajas de limón" />
+      </div>
+    </section>
+
+    <!-- SLIDE 6 -->
+    <section class="slide-card" data-title="06 · Legado Atemporal">
+      <div class="slide-meta">
+        <span>THE COCA-COLA COMPANY · 1886–2026</span>
+        <span class="slide-num">06 / 06</span>
+      </div>
+      <div class="closing-banner">
+        <img src="./assets/macro-bubbles.png" alt="Burbujas efervescentes de Coca-Cola" />
+      </div>
+      <div class="closing-header">
+        <div class="eyebrow">LEGADO ATEMPORAL</div>
+        <h2>140 Años Refrescando el Mundo</h2>
+        <p class="lead">La clave de su permanencia: mantener inalterables los códigos de identidad mientras evoluciona con cada generación.</p>
+      </div>
+      <div class="legacy-grid">
+        <div class="legacy-card">
+          <h4>Identidad Inconfundible</h4>
+          <p>Rojo vibrante, caligrafía Spencerian y botella Contour reconocibles en cualquier idioma.</p>
+        </div>
+        <div class="legacy-card">
+          <h4>Capilaridad Logística</h4>
+          <p>Red de +200 embotelladores que lleva +2,200 millones de raciones diarias a todo el mundo.</p>
+        </div>
+        <div class="legacy-card">
+          <h4>Evolución Sostenible</h4>
+          <p>Transición hacia portafolio bajo en calorías, envases rPET y gestión responsable del agua.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottombar">
+    <button class="btn" id="btnPrev" aria-label="Anterior">← Anterior</button>
+    <div class="dots" id="dots"></div>
+    <button class="btn" id="btnNext" aria-label="Siguiente">Siguiente →</button>
+  </footer>
+
+  <!-- Overview Modal -->
+  <div class="modal-backdrop" id="overviewModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <strong>Índice de Diapositivas (01–06)</strong>
+        <button class="btn" id="btnCloseModal">Cerrar</button>
+      </div>
+      <div class="overview-grid" id="overviewGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide-card'));
+    const dotsContainer = document.getElementById('dots');
+    const progressFill = document.getElementById('progressFill');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const overviewModal = document.getElementById('overviewModal');
+    const overviewGrid = document.getElementById('overviewGrid');
+    let current = 0;
+
+    slides.forEach((slide, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (index === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Diapositiva ${index + 1}`);
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsContainer.appendChild(dot);
+
+      const item = document.createElement('button');
+      item.className = 'overview-item' + (index === 0 ? ' current' : '');
+      item.innerHTML = `<small>0${index + 1} / 0${slides.length}</small><strong>${slide.dataset.title}</strong>`;
+      item.addEventListener('click', () => {
+        goToSlide(index);
+        overviewModal.classList.remove('open');
+      });
+      overviewGrid.appendChild(item);
+    });
+
+    function goToSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      slides[current].classList.remove('active');
+      dotsContainer.children[current].classList.remove('active');
+      overviewGrid.children[current].classList.remove('current');
+
+      current = index;
+      slides[current].classList.add('active');
+      dotsContainer.children[current].classList.add('active');
+      overviewGrid.children[current].classList.add('current');
+
+      progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
+      btnPrev.disabled = current === 0;
+      btnNext.disabled = current === slides.length - 1;
+    }
+
+    btnPrev.addEventListener('click', () => goToSlide(current - 1));
+    btnNext.addEventListener('click', () => goToSlide(current + 1));
+
+    document.getElementById('btnOverview').addEventListener('click', () => {
+      overviewModal.classList.add('open');
+    });
+    document.getElementById('btnCloseModal').addEventListener('click', () => {
+      overviewModal.classList.remove('open');
+    });
+    overviewModal.addEventListener('click', (e) => {
+      if (e.target === overviewModal) overviewModal.classList.remove('open');
+    });
+
+    document.getElementById('btnFullscreen').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        goToSlide(current + 1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goToSlide(current - 1);
+      } else if (e.key.toLowerCase() === 'g') {
+        overviewModal.classList.toggle('open');
+      } else if (e.key.toLowerCase() === 'f') {
+        document.getElementById('btnFullscreen').click();
+      } else if (e.key === 'Escape') {
+        overviewModal.classList.remove('open');
+      }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    document.getElementById('stage').addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    document.getElementById('stage').addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(dx) > 45) {
+        goToSlide(dx < 0 ? current + 1 : current - 1);
+      }
+    }, { passive: true });
+
+    goToSlide(0);
+  </script>
+</body>
+</html>
